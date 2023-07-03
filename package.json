@@ -2,6 +2,7 @@
   "name": "ragnarok",
   "version": "0.1.0",
   "private": true,
+  "homepage": "ragnarok",
   "dependencies": {
     "@cloudscape-design/components": "^3.0.280",
     "@cloudscape-design/global-styles": "^1.0.9",
