@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ragnarok/static/css/main.e38f593c.css",
+    "main.js": "/ragnarok/static/js/main.c9fd057c.js",
+    "static/js/787.d48cb64e.chunk.js": "/ragnarok/static/js/787.d48cb64e.chunk.js",
+    "index.html": "/ragnarok/index.html",
+    "main.e38f593c.css.map": "/ragnarok/static/css/main.e38f593c.css.map",
+    "main.c9fd057c.js.map": "/ragnarok/static/js/main.c9fd057c.js.map",
+    "787.d48cb64e.chunk.js.map": "/ragnarok/static/js/787.d48cb64e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e38f593c.css",
+    "static/js/main.c9fd057c.js"
+  ]
+}
