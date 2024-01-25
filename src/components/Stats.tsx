@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {Calculator} from "../features/stats/calculator";
-import Attributes, {Attribute} from "./Attributes";
 import {
     Button,
     Container,
-    ContentLayout,
     FormField,
     Grid,
     Input,
     PieChart,
-    TextContent
+    ProgressBar,
+    SpaceBetween
 } from "@cloudscape-design/components";
+import React, { useState } from 'react';
+import { Calculator } from "../features/stats/calculator";
+import Attributes, { Attribute } from "./Attributes";
 
 const pointCalculator = new Calculator(5, 2);
 const spentCalculator = new Calculator(10, 1);
@@ -43,24 +43,20 @@ const Stats = () => {
         setLuk(1);
     };
 
-    function summary() {
-        return `${availablePoints(level)} - ${spentPoints(str, agi, vit, int, dex, luk)} = ${availablePoints(level) - spentPoints(str, agi, vit, int, dex, luk)}`
-    }
+    const spent = spentPoints(str, agi, vit, int, dex, luk);
+    const available = availablePoints(level);
 
     const chartData = [
-        {title: Attribute.STR, value: str},
-        {title: Attribute.AGI, value: agi},
-        {title: Attribute.VIT, value: vit},
-        {title: Attribute.INT, value: int},
-        {title: Attribute.DEX, value: dex},
-        {title: Attribute.LUK, value: luk},
+        {title: Attribute.STR.toUpperCase(), value: str},
+        {title: Attribute.AGI.toUpperCase(), value: agi},
+        {title: Attribute.VIT.toUpperCase(), value: vit},
+        {title: Attribute.INT.toUpperCase(), value: int},
+        {title: Attribute.DEX.toUpperCase(), value: dex},
+        {title: Attribute.LUK.toUpperCase(), value: luk},
     ];
-    return <ContentLayout>
-        <Grid gridDefinition={[{colspan: 3}, {colspan: 9}]}>
+    return <Grid gridDefinition={[{colspan: 3}, {colspan: 9}]}>
+        <SpaceBetween size={'m'}>
             <Container>
-                <TextContent>
-                    <code>{summary()}</code>
-                </TextContent>
                 <FormField label='Level'>
                     <Input
                         type={"number"}
@@ -71,19 +67,32 @@ const Stats = () => {
                         onChange={({detail}) => setLevel(+detail.value)}
                     />
                 </FormField>
-                <Attributes attribute={Attribute.STR} level={str} setter={setStr}/>
-                <Attributes attribute={Attribute.AGI} level={agi} setter={setAgi}/>
-                <Attributes attribute={Attribute.VIT} level={vit} setter={setVit}/>
-                <Attributes attribute={Attribute.INT} level={int} setter={setInt}/>
-                <Attributes attribute={Attribute.DEX} level={dex} setter={setDex}/>
-                <Attributes attribute={Attribute.LUK} level={luk} setter={setLuk}/>
-
-                <Button onClick={resetPoints}>Reset</Button>
+            </Container>
+            <Container>
+                <SpaceBetween size={'m'}>
+                    <Attributes attribute={Attribute.STR} level={str} setter={setStr}/>
+                    <Attributes attribute={Attribute.AGI} level={agi} setter={setAgi}/>
+                    <Attributes attribute={Attribute.VIT} level={vit} setter={setVit}/>
+                    <Attributes attribute={Attribute.INT} level={int} setter={setInt}/>
+                    <Attributes attribute={Attribute.DEX} level={dex} setter={setDex}/>
+                    <Attributes attribute={Attribute.LUK} level={luk} setter={setLuk}/>
+                    <Button onClick={resetPoints}>Reset</Button>
+                </SpaceBetween>
+            </Container>
+        </SpaceBetween>
+        <SpaceBetween size={'m'}>
+            <Container>
+                <ProgressBar
+                    label={'Point allocation'}
+                    description={`Spent ${spent} points out of ${available}`}
+                    additionalInfo={`Remaining points: ${available - spent}`}
+                    value={100 * spent / available}
+                />
             </Container>
             <Container>
                 <PieChart data={chartData} size={"large"} variant={"donut"} hideFilter hideLegend/>
             </Container>
-        </Grid>
-    </ContentLayout>
+        </SpaceBetween>
+    </Grid>
 };
 export default Stats;

@@ -1,6 +1,6 @@
-import {Calculator} from "../features/stats/calculator";
-import {Dispatch, SetStateAction} from "react";
-import {FormField, Input} from "@cloudscape-design/components"
+import { Calculator } from "../features/stats/calculator";
+import { Dispatch, SetStateAction } from "react";
+import { FormField, Input } from "@cloudscape-design/components"
 
 export enum Attribute {
     STR = 'str',
@@ -10,6 +10,7 @@ export enum Attribute {
     DEX = 'dex',
     LUK = 'luk',
 }
+
 export interface AttributeProps {
     attribute: Attribute,
     level: number,
@@ -18,8 +19,10 @@ export interface AttributeProps {
 
 const calculator = new Calculator(10, 1);
 const Attributes = ({attribute, level, setter}: AttributeProps) => {
-    const {increment, multiplier, offset} = calculator.getStats(level);
-    return <FormField label={attribute.toUpperCase()} description={increment + 'x' + multiplier + '+' + offset}>
+    const spent = calculator.getPoints(level);
+    return <FormField
+        label={attribute.toUpperCase()}
+        description={`Points spent: ${spent}`}>
         <Input
             type="number"
             aria-label="Set attribute level"

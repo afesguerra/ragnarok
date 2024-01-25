@@ -26,12 +26,4 @@ export class Calculator {
   getPoints(level: number) {
     return this.getIncrement(level) * this.getMultiplier(level) + this.getOffset(level);
   }
-
-  getStats(level: number) {
-    return {
-      increment: this.getIncrement(level),
-      multiplier: this.getMultiplier(level),
-      offset: this.getOffset(level),
-    };
-  }
 }
