@@ -8,7 +8,7 @@ import {
     ProgressBar,
     SpaceBetween
 } from "@cloudscape-design/components";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Calculator } from "../features/stats/calculator";
 import Attributes, { Attribute } from "./Attributes";
 

@@ -1,5 +1,3 @@
-import React from 'react';
-import './App.css';
 import "@cloudscape-design/global-styles/index.css"
 import { AppLayout, ContentLayout, Header } from "@cloudscape-design/components";
 import Stats from "./components/Stats";
